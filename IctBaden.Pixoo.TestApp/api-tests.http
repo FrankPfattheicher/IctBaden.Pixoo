@@ -1,0 +1,75 @@
+﻿
+# select channel 0
+
+POST http://192.168.2.187:80/post
+Content-Type: application/json
+Accept: application/json
+
+{ 
+  "Command": "Channel/SetIndex",
+  "SetIndex": 0
+}
+
+####
+
+# set display brightness
+
+POST http://192.168.2.45:80/post
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Command": "Channel/SetBrightness",
+  "Brightness": 100
+}
+
+####
+
+# get all setting
+
+POST http://192.168.2.187:80/post
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Command": "Channel/GetAllConf"
+}
+
+####
+
+# Play Buzzer
+
+POST http://192.168.2.187:80/post
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Command": "Device/PlayBuzzer",
+  "ActiveTimeInCycle": 500,
+  "OffTimeInCycle": 500,
+  "PlayTotalTime": 3000
+}
+
+####
+
+# display text
+
+POST http://192.168.2.187:80/post
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Command":"Draw/SendHttpText",
+  "TextId":4,
+  "x":0,
+  "y":40,
+  "dir":0,
+  "font":4,
+  "TextWidth":56,
+  "speed":10,
+  "TextString":"hello, Divoom",
+  "color":"#FFFF00",
+  "align":1
+}
+
+
