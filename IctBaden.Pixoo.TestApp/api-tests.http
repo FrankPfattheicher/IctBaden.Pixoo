@@ -1,20 +1,44 @@
 ﻿
-# select channel 0
+# Get select face id
 
-POST http://192.168.2.187:80/post
+POST http://192.168.2.187/post
 Content-Type: application/json
 Accept: application/json
 
-{ 
+{
+  "Command": "Channel/GetClockInfo"
+}
+
+####
+
+# Select channel
+
+POST http://192.168.2.187/post
+Content-Type: application/json
+Accept: application/json
+
+{
   "Command": "Channel/SetIndex",
-  "SetIndex": 0
+  "SelectIndex": 3
+}
+
+####
+
+# Get current channel
+
+POST http://192.168.2.187/post
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Command": "Channel/GetIndex"
 }
 
 ####
 
 # set display brightness
 
-POST http://192.168.2.45:80/post
+POST http://192.168.2.187/post
 Content-Type: application/json
 Accept: application/json
 
@@ -27,7 +51,7 @@ Accept: application/json
 
 # get all setting
 
-POST http://192.168.2.187:80/post
+POST http://192.168.2.187/post
 Content-Type: application/json
 Accept: application/json
 
@@ -37,9 +61,22 @@ Accept: application/json
 
 ####
 
+# Visualizer Channel
+
+POST http://192.168.2.187/post
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Command": "Channel/SetEqPosition",
+  "EqPosition": 0
+}
+
+####
+
 # Play Buzzer
 
-POST http://192.168.2.187:80/post
+POST http://192.168.2.187/post
 Content-Type: application/json
 Accept: application/json
 
@@ -52,23 +89,65 @@ Accept: application/json
 
 ####
 
+# Reset sending animation PicId
+
+POST http://192.168.2.187/post
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Command": "Draw/ResetHttpGifId"
+}
+
+####
+
+# Send animation
+
+POST http://192.168.2.187/post
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Command":"Draw/SendHttpGif",
+  "PicNum":1,
+  "PicWidth":64,
+  "PicOffset":0,
+  "PicID":1,
+  "PicSpeed":100,
+  "PicData":""
+}
+
+####
+
+# Clear all text area
+
+POST http://192.168.2.187/post
+Content-Type: application/json
+Accept: application/json
+
+{
+  "Command": "Draw/ClearHttpText"
+}
+
+####
+
 # display text
 
-POST http://192.168.2.187:80/post
+POST http://192.168.2.187/post
 Content-Type: application/json
 Accept: application/json
 
 {
   "Command":"Draw/SendHttpText",
   "TextId":4,
-  "x":0,
-  "y":40,
+  "x":4,
+  "y":26,
   "dir":0,
-  "font":4,
-  "TextWidth":56,
+  "font":3,
+  "TextWidth":64,
   "speed":10,
-  "TextString":"hello, Divoom",
-  "color":"#FFFF00",
+  "TextString":"Divoom",
+  "color":"#0000FF",
   "align":1
 }
 
