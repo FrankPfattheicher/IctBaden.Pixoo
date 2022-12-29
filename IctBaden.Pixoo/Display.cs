@@ -5,6 +5,8 @@ using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
+using SkiaSharp;
+using ArgumentOutOfRangeException = System.ArgumentOutOfRangeException;
 
 namespace IctBaden.Pixoo;
 
@@ -12,16 +14,30 @@ public class Display
 {
     private readonly IPAddress _address;
     private readonly HttpClient _client;
-    private readonly Bitmap _bitmap;
+    private readonly SKBitmap _bitmap;
 
-    public Display(IPAddress address)
+    public readonly int Columns;
+    public readonly int Rows;
+    
+    public Display(IPAddress address, DisplayType type)
     {
         _address = address;
         _client = new HttpClient();
         _client.DefaultRequestHeaders.Accept
             .Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
-        _bitmap = new Bitmap(64, 64, PixelFormat.Format24bppRgb);
-        _bitmap.SetPixel(1,1,Color.Blue);
+
+        switch (type)
+        {
+            case DisplayType.Pixoo64:
+                Columns = 64;
+                Rows = 64;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+        
+        _bitmap = new SKBitmap(Columns, Rows, SKColorType.Rgb888x, SKAlphaType.Opaque);
+        _bitmap.SetPixel(1, 1, new SKColor(0, 0, 255));
     }
 
     private HttpResponseMessage PostCommand(string command, Dictionary<string, object> parameters)
@@ -54,9 +70,7 @@ public class Display
 
     public void SetBitmap()
     {
-        var converter = new ImageConverter();
-        var bytes = (byte[])converter.ConvertTo(_bitmap, typeof(byte[]));
-        var data = Convert.ToBase64String(bytes);
+        var data = Convert.ToBase64String(_bitmap.Bytes);
 
         var param = new Dictionary<string, object>
         {
@@ -65,8 +79,9 @@ public class Display
             { "PicOffset", 0 },
             { "PicID", 1 },
             { "PicSpeed", 100 },
-            { "PicData", data
-        }
+            {
+                "PicData", data
+            }
         };
         PostCommand("Draw/SendHttpGif", param);
     }

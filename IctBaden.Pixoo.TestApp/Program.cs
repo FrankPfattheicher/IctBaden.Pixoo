@@ -6,7 +6,7 @@ using IctBaden.Pixoo;
 Console.WriteLine("Pixoo64");
 
 var address = IPAddress.Parse("192.168.2.163");
-var display = new Display(address);
+var display = new Display(address, DisplayType.Pixoo64);
 
 display.SetBrightness(50);
 Task.Delay(1000).Wait();
