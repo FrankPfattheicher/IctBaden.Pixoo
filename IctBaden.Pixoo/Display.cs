@@ -38,8 +38,16 @@ public class Display
         
         _bitmap = new SKBitmap(Columns, Rows, SKColorType.Rgb888x, SKAlphaType.Opaque);
         _bitmap.SetPixel(1, 1, new SKColor(0, 0, 255));
+        _bitmap.SetPixel(2, 2, new SKColor(255, 0, 0));
+        _bitmap.SetPixel(3, 3, new SKColor(0, 0, 255));
+        _bitmap.SetPixel(4, 4, new SKColor(255, 255, 255));
+        using var canvas = new SKCanvas(_bitmap);
+        canvas.DrawCircle(32, 32, 16, new SKPaint { Color = new SKColor(0, 255, 0) });
     }
 
+    private HttpResponseMessage PostCommand(string command) =>
+        PostCommand(command, new Dictionary<string, object>());
+    
     private HttpResponseMessage PostCommand(string command, Dictionary<string, object> parameters)
     {
         var url = $"http://{_address}/post";
@@ -70,7 +78,11 @@ public class Display
 
     public void SetBitmap()
     {
-        var data = Convert.ToBase64String(_bitmap.Bytes);
+        PostCommand("Draw/ResetHttpGifId");
+        
+        var bytes = 
+        _bitmap.Bytes.Chunk(4).SelectMany(pix => pix.Take(3)).ToArray();
+        var data = Convert.ToBase64String(bytes);
 
         var param = new Dictionary<string, object>
         {
@@ -79,9 +91,7 @@ public class Display
             { "PicOffset", 0 },
             { "PicID", 1 },
             { "PicSpeed", 100 },
-            {
-                "PicData", data
-            }
+            { "PicData", data }
         };
         PostCommand("Draw/SendHttpGif", param);
     }
