@@ -1,7 +1,7 @@
 ﻿
 # Get select face id
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 
@@ -103,7 +103,7 @@ Accept: application/json
 
 # Send animation
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 

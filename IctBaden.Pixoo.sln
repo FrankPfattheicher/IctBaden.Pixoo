@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{FC0A025E-D
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IctBaden.Pixoo", "IctBaden.Pixoo\IctBaden.Pixoo.csproj", "{500F0888-980E-4514-99B3-5B537DDE836B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,5 +19,9 @@ Global
 		{3B8D41B4-ED3B-4E15-8E25-16F14C06EBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B8D41B4-ED3B-4E15-8E25-16F14C06EBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B8D41B4-ED3B-4E15-8E25-16F14C06EBBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500F0888-980E-4514-99B3-5B537DDE836B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500F0888-980E-4514-99B3-5B537DDE836B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500F0888-980E-4514-99B3-5B537DDE836B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500F0888-980E-4514-99B3-5B537DDE836B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
