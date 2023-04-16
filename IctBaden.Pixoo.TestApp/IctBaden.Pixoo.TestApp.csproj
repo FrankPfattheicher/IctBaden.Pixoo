@@ -16,4 +16,8 @@
       <None Remove="runtimeconfig.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="IctBaden.Framework" Version="2.1.1" />
+    </ItemGroup>
+
 </Project>

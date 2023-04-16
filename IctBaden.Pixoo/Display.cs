@@ -14,6 +14,7 @@ public class Display
 {
     private readonly IPAddress _address;
     private readonly HttpClient _client;
+    public readonly SKCanvas Canvas;
     private readonly SKBitmap _bitmap;
 
     public readonly int Columns;
@@ -35,14 +36,9 @@ public class Display
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
-        
+
         _bitmap = new SKBitmap(Columns, Rows, SKColorType.Rgb888x, SKAlphaType.Opaque);
-        _bitmap.SetPixel(1, 1, new SKColor(0, 0, 255));
-        _bitmap.SetPixel(2, 2, new SKColor(255, 0, 0));
-        _bitmap.SetPixel(3, 3, new SKColor(0, 0, 255));
-        _bitmap.SetPixel(4, 4, new SKColor(255, 255, 255));
-        using var canvas = new SKCanvas(_bitmap);
-        canvas.DrawCircle(32, 32, 16, new SKPaint { Color = new SKColor(0, 255, 0) });
+        Canvas = new SKCanvas(_bitmap);
     }
 
     private HttpResponseMessage PostCommand(string command) =>

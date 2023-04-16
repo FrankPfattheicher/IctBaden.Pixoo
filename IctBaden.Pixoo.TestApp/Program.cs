@@ -2,6 +2,7 @@
 
 using System.Net;
 using IctBaden.Pixoo;
+using SkiaSharp;
 
 Console.WriteLine("Pixoo64");
 
@@ -12,4 +13,52 @@ display.SetBrightness(50);
 Task.Delay(1000).Wait();
 display.SetBrightness(100);
 
+var paint = new SKPaint();
+
+paint.Typeface = SKTypeface.FromFamilyName("Arial");
+paint.TextSize = 11;
+paint.TextAlign = SKTextAlign.Right;
+paint.Color = new SKColor(255, 255, 255);
+
+
+// var text = "This is IctBaden.Pixoo";
+// var measureText = paint.MeasureText(text);
+// var ix = 0;
+//
+// text = text + " * " + text;
+//
+// for (var loop = 0; loop < 1000; loop++)
+// {
+//     display.Canvas.DrawRect(0,0,64,12, new SKPaint { Color = new SKColor(0, 128, 0)});
+//     display.Canvas.DrawText(text, 3 - ix, 10, paint );
+//
+//     ix += 3;
+//     if (ix > measureText + 10) ix = 0;
+//     
+//     display.SetBitmap();
+//     Task.Delay(20).Wait();
+// }
+
+display.Canvas.DrawCircle(6, 6, 5, new SKPaint { Color = SKColors.Yellow });
+display.Canvas.DrawText("86%", 64, 10, paint );
+
+var fieldInfos = typeof(SKColors).GetFields();
+var field = fieldInfos
+    .FirstOrDefault(f => string.Compare(f.Name, "green", StringComparison.InvariantCultureIgnoreCase) == 0);
+
+var color = field != null 
+    ? (SKColor)field.GetValue(null)
+    : SKColors.Transparent;
+
+display.Canvas.DrawRect(2,13,62,12, new SKPaint { Color = color });
+display.Canvas.DrawRect(0, 15,2,8, new SKPaint { Color = SKColors.Green });
+display.Canvas.DrawRect(3,14,60,10, new SKPaint { Color = SKColors.Black });
+
+display.Canvas.DrawRect(0,26,64,12, new SKPaint { Color = new SKColor(255, 0, 0)});
+display.Canvas.DrawRect(0,39,64,12, new SKPaint { Color = new SKColor(0, 255, 0)});
+display.Canvas.DrawRect(0,52,64,12, new SKPaint { Color = SKColors.Blue});
+
 display.SetBitmap();
+
+Console.WriteLine("done");
+
