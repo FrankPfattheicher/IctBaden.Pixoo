@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>IctBaden.Pixoo</RootNamespace>
+        <LangVersion>12</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="IctBaden.Framework" Version="2.1.1" />
+      <PackageReference Include="IctBaden.Framework" Version="3.0.1" />
     </ItemGroup>
 
 </Project>

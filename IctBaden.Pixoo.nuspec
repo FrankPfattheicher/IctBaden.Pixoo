@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>IctBaden.Pixoo</id>
+        <version>1.0.0</version>
+        <authors>Frank Pfattheicher</authors>
+        <owners>Frank Pfattheicher</owners>
+        <summary>Control Pixoo devices with REST-API</summary>
+        <license type="expression">MIT</license>
+        <icon>images/icon64.png</icon>
+        <projectUrl>https://github.com/FrankPfattheicher/IctBaden.Pixoo</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Control Pixoo devices with REST-API</description>
+        <releaseNotes>Stable</releaseNotes>
+        <copyright>Copyright ICT Baden GmbH 2024</copyright>
+        <tags>Pixoo REST-API</tags>
+        <dependencies>
+            <dependency id="SkiaSharp" version="2.88.7" />
+            <dependency id="SkiaSharp.NativeAssets.Linux" version="2.88.7"/>
+            <dependency id="SkiaSharp.NativeAssets.macOS" version="2.88.7"/>
+            <dependency id="SkiaSharp.NativeAssets.Win32" version="2.88.7" />
+        </dependencies>
+        <references>
+            <group targetFramework="net6.0" >
+                <reference file="IctBaden.Pixoo.dll"/>
+            </group>
+        </references>
+    </metadata>
+    <files>
+        <file src="../icon64.png" target="images"/>
+        <file src="lib/*.dll" target="lib/net6.0"/>
+        <file src="lib/*.pdb" target="lib/net6.0"/>
+    </files>
+</package>

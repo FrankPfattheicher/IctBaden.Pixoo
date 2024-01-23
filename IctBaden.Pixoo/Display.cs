@@ -1,12 +1,12 @@
-﻿using System.Drawing;
-using System.Drawing.Imaging;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
 using SkiaSharp;
 using ArgumentOutOfRangeException = System.ArgumentOutOfRangeException;
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace IctBaden.Pixoo;
 
@@ -17,8 +17,8 @@ public class Display
     public readonly SKCanvas Canvas;
     private readonly SKBitmap _bitmap;
 
-    public readonly int Columns;
-    public readonly int Rows;
+    public int Columns { get; private set; }
+    public int Rows { get; private set; }
     
     public Display(IPAddress address, DisplayType type)
     {
@@ -41,6 +41,7 @@ public class Display
         Canvas = new SKCanvas(_bitmap);
     }
 
+    // ReSharper disable once UnusedMethodReturnValue.Local
     private HttpResponseMessage PostCommand(string command) =>
         PostCommand(command, new Dictionary<string, object>());
     
@@ -59,7 +60,16 @@ public class Display
 
         var data = JsonSerializer.Serialize(request);
         var content = new StringContent(data, Encoding.UTF8, MediaTypeNames.Application.Json);
-        return _client.PostAsync(url, content).Result;
+        try
+        {
+            return _client.PostAsync(url, content).Result;
+        }
+        catch
+        {
+            // ignore
+        }
+
+        return new HttpResponseMessage(HttpStatusCode.InternalServerError);
     }
 
 

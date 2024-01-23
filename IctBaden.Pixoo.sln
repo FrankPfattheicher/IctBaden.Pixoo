@@ -5,9 +5,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{FC0A025E-D93B-414F-B6F1-3190CE429C31}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		ReleaseNotes.md = ReleaseNotes.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IctBaden.Pixoo", "IctBaden.Pixoo\IctBaden.Pixoo.csproj", "{500F0888-980E-4514-99B3-5B537DDE836B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{A9838BD2-B59F-4951-B8EF-049D63AA924C}"
+	ProjectSection(SolutionItems) = preProject
+		IctBaden.Pixoo.nuspec = IctBaden.Pixoo.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
