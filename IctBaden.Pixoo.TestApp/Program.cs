@@ -47,7 +47,7 @@ paint.TextSize = 8;
 paint.TextAlign = SKTextAlign.Left;
 paint.Color = new SKColor(255, 255, 255);
 display.Canvas.DrawRect(0,0,64,8, new SKPaint { Color = new SKColor(1, 40, 82)});
-display.Canvas.DrawText("LIVA", 1, 7, paint );
+display.Canvas.DrawText("TEST", 1, 7, paint );
 
 var color = Color.FromName("DarkOliveGreen");
 display.Canvas.DrawRect(0,8,64,8, new SKPaint { Color = new SKColor(color.R, color.G, color.B)});

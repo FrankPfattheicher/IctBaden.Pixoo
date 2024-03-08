@@ -24,6 +24,7 @@ public class Display
     {
         _address = address;
         _client = new HttpClient();
+        _client.Timeout = TimeSpan.FromSeconds(5);
         _client.DefaultRequestHeaders.Accept
             .Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
 
