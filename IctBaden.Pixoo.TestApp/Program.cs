@@ -10,8 +10,16 @@ Console.WriteLine("Pixoo64");
 var address = IPAddress.Parse("192.168.2.163");
 var display = new Display(address, DisplayType.Pixoo64);
 
-// display.SetBrightness(50);
-// Task.Delay(1000).Wait();
+Console.WriteLine($"IPAddress {address}");
+
+var configuration = display.GetConfiguration();
+Console.WriteLine(configuration == null 
+    ? "Failed to read configuration" 
+    : $"Brightness is {configuration.Brightness}%");
+
+display.PlayBuzzer();
+display.SetBrightness(50);
+Task.Delay(500).Wait();
 display.SetBrightness(100);
 
 var paint = new SKPaint();

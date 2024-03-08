@@ -74,6 +74,36 @@ public class Display
     }
 
 
+    public PixooClockInfo? GetClockInfo()
+    {
+        var responseMessage = PostCommand("Channel/GetClockInfo");
+        if (!responseMessage.IsSuccessStatusCode) return null;
+        
+        var json = responseMessage.Content.ReadAsStringAsync().Result;
+        var clockInfo = JsonSerializer.Deserialize<PixooClockInfo>(json);
+        return clockInfo;
+    }
+
+    public PixooChannelIndex? GetCurrentChannel()
+    {
+        var responseMessage = PostCommand("Channel/GetIndex");
+        if (!responseMessage.IsSuccessStatusCode) return null;
+        
+        var json = responseMessage.Content.ReadAsStringAsync().Result;
+        var channelIndex = JsonSerializer.Deserialize<PixooChannelIndex>(json);
+        return channelIndex;
+    }
+
+    public PixooConfiguration? GetConfiguration()
+    {
+        var responseMessage = PostCommand("Channel/GetAllConf");
+        if (!responseMessage.IsSuccessStatusCode) return null;
+        
+        var json = responseMessage.Content.ReadAsStringAsync().Result;
+        var configuration = JsonSerializer.Deserialize<PixooConfiguration>(json);
+        return configuration;
+    }
+
     public void SetBrightness(uint percent)
     {
         var param = new Dictionary<string, object>
@@ -83,6 +113,17 @@ public class Display
         PostCommand("Channel/SetBrightness", param);
     }
 
+    public void PlayBuzzer(int onMs = 500, int offMs = 500, int totalMs = 3000)
+    {
+        var param = new Dictionary<string, object>
+        {
+            { "ActiveTimeInCycle", onMs },
+            { "OffTimeInCycle", offMs },
+            { "PlayTotalTime", totalMs }
+        };
+        PostCommand("Device/PlayBuzzer", param);
+    }
+    
     public void SetBitmap()
     {
         PostCommand("Draw/ResetHttpGifId");

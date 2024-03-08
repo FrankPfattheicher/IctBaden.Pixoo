@@ -13,7 +13,7 @@ Accept: application/json
 
 # Select channel
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 
@@ -26,7 +26,7 @@ Accept: application/json
 
 # Get current channel
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 
@@ -38,7 +38,7 @@ Accept: application/json
 
 # set display brightness
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 
@@ -51,7 +51,7 @@ Accept: application/json
 
 # get all setting
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 
@@ -63,7 +63,7 @@ Accept: application/json
 
 # Visualizer Channel
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 
@@ -76,7 +76,7 @@ Accept: application/json
 
 # Play Buzzer
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 
@@ -91,7 +91,7 @@ Accept: application/json
 
 # Reset sending animation PicId
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 
@@ -121,7 +121,7 @@ Accept: application/json
 
 # Clear all text area
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 
@@ -133,7 +133,7 @@ Accept: application/json
 
 # display text
 
-POST http://192.168.2.187/post
+POST http://192.168.2.163/post
 Content-Type: application/json
 Accept: application/json
 
@@ -151,4 +151,12 @@ Accept: application/json
   "align":1
 }
 
+
+####
+
+# display text
+
+GET http://192.168.2.163/post
+Content-Type: application/json
+Accept: application/json
 
